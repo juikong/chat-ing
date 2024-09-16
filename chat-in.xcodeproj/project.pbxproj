@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E0CB6C72C982FF5005ADA7E /* chat-ing-screenshot-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0CB6C62C982FF5005ADA7E /* chat-ing-screenshot-1.png */; };
+		4E0CB6C92C983007005ADA7E /* chat-ing-screenshot-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E0CB6C82C983007005ADA7E /* chat-ing-screenshot-2.png */; };
 		4E4684602C92E5B700E8063E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 4E46845F2C92E5B700E8063E /* README.md */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E0CB6C62C982FF5005ADA7E /* chat-ing-screenshot-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat-ing-screenshot-1.png"; sourceTree = "<group>"; };
+		4E0CB6C82C983007005ADA7E /* chat-ing-screenshot-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat-ing-screenshot-2.png"; sourceTree = "<group>"; };
 		4E46845F2C92E5B700E8063E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4E659FDB2C5CB92700DFD82B /* chat-in.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "chat-in.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E659FEE2C5CB92900DFD82B /* chat-inTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "chat-inTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +72,8 @@
 		4E659FD22C5CB92700DFD82B = {
 			isa = PBXGroup;
 			children = (
+				4E0CB6C82C983007005ADA7E /* chat-ing-screenshot-2.png */,
+				4E0CB6C62C982FF5005ADA7E /* chat-ing-screenshot-1.png */,
 				4E46845F2C92E5B700E8063E /* README.md */,
 				4E659FDD2C5CB92700DFD82B /* chat-in */,
 				4E659FF12C5CB92900DFD82B /* chat-inTests */,
@@ -205,6 +211,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E0CB6C92C983007005ADA7E /* chat-ing-screenshot-2.png in Resources */,
+				4E0CB6C72C982FF5005ADA7E /* chat-ing-screenshot-1.png in Resources */,
 				4E4684602C92E5B700E8063E /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,7 +392,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "chat-in/chat_in.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"chat-in/Preview Content\"";
 				DEVELOPMENT_TEAM = ZVEFPT99T5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -405,7 +413,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "cogniti-sense.chat-ing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -424,7 +432,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "chat-in/chat_in.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"chat-in/Preview Content\"";
 				DEVELOPMENT_TEAM = ZVEFPT99T5;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -445,7 +453,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "cogniti-sense.chat-ing";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

@@ -152,7 +152,10 @@ struct UserHeader: Codable, Hashable {
 
 struct UpdateUser: Codable, Hashable {
     var email: String
-    var username: String
+    var displayname: String
+    var departmentname: String
+    var division: String
+    var location: String
 }
 
 struct UserPassword: Codable, Hashable {

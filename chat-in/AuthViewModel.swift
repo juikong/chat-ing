@@ -23,7 +23,11 @@ class AuthViewModel: ObservableObject {
         isAutologin = false
     }
     
-    func rememberLogIn() {
-        isAutologin = true
+    func reLogIn() {
+        isAuthenticated = false
     }
+    
+    //func rememberLogIn() {
+    //    isAutologin = true
+    //}
 }

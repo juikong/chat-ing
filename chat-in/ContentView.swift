@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     @StateObject private var headerStore = HeaderStore()
     @State private var serverurl: String = ""
     @State private var userid: String = ""
@@ -163,6 +164,9 @@ struct ContentView: View {
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+                DispatchQueue.main.async {
+                    authViewModel.logOut()
+                }
                 return
             }
             

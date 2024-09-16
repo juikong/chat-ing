@@ -20,6 +20,7 @@ struct SettingView: View {
                 }
             }
             .navigationTitle("Settings")
+#if os(iOS)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -29,6 +30,17 @@ struct SettingView: View {
                     }
                 }
             }
+#else
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    Button(action: {
+                        authViewModel.logOut()
+                    }) {
+                        Text("Log Out")
+                    }
+                }
+            }
+#endif
         }
     }
 }

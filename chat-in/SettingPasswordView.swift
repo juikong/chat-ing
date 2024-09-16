@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct SettingPasswordView: View {
+    @EnvironmentObject var authViewModel: AuthViewModel
     @Environment(\.dismiss) var dismiss
     @State private var password = ""
     @State private var confirmpassword = ""
-    @State private var showAlert = false
-    @State private var passwordAlert = false
-    @State private var errorAlert = false
+    @State private var showError: Bool = false
+    @State private var errorMessage: String = ""
     @State private var serverurl: String = ""
     @State private var userid: String = ""
     @State private var usertoken: String = ""
@@ -24,7 +24,7 @@ struct SettingPasswordView: View {
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top)
-            TextField("NewPassword", text: $password, prompt: Text("New Password"))
+            SecureField("NewPassword", text: $password, prompt: Text("New Password"))
                 .padding(.horizontal)
                 .cornerRadius(5.0)
                 .background(.tertiary)
@@ -32,11 +32,16 @@ struct SettingPasswordView: View {
                 .padding(.horizontal)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top)
-            TextField("Confirm New Password", text: $confirmpassword, prompt: Text("Confirm New Password"))
+            SecureField("Confirm New Password", text: $confirmpassword, prompt: Text("Confirm New Password"))
                 .padding(.horizontal)
                 .cornerRadius(5.0)
                 .padding(.bottom)
                 .background(.tertiary)
+            if showError {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .padding()
+            }
             Spacer()
             Button(action: {
                 changePassword()
@@ -50,36 +55,8 @@ struct SettingPasswordView: View {
             .padding()
         }
         .onAppear {
+            getServerUrl()
             getUserId()
-        }
-        .alert(isPresented: $passwordAlert) {
-            Alert(
-                title: Text("Change Password"),
-                message: Text("Password and Confirm Password must match."),
-                dismissButton: .default(Text("OK")) {
-                    password = ""
-                    confirmpassword = ""
-                }
-            )
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Change Password"),
-                message: Text("Your password has been changed successfully."),
-                dismissButton: .default(Text("OK")) {
-                    password = ""
-                    confirmpassword = ""
-                }
-            )
-        }
-        .alert(isPresented: $errorAlert) {
-            Alert(
-                title: Text("Change Password"),
-                message: Text("Failed to change password."),
-                dismissButton: .default(Text("OK")) {
-                    //
-                }
-            )
         }
     }
     
@@ -94,7 +71,9 @@ struct SettingPasswordView: View {
     
     private func changePassword() {
         if password != confirmpassword {
-            passwordAlert = true
+            //passwordAlert = true
+            self.showError = true
+            self.errorMessage = "Password and Confirm Password must match."
             return
         }
         
@@ -121,9 +100,12 @@ struct SettingPasswordView: View {
             }
 
             if let response = response as? HTTPURLResponse, response.statusCode == 200 {
-                showAlert = true
+                DispatchQueue.main.async {
+                    authViewModel.logOut()
+                }
             } else {
-                errorAlert = true
+                self.showError = true
+                self.errorMessage = "Failed to change password."
                 print("Failed to update user, server error.")
             }
         }.resume()

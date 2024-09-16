@@ -200,7 +200,7 @@ struct SettingProfileView: View {
         request.httpMethod = "PATCH"
         request.setValue("Bearer \(usertoken)", forHTTPHeaderField: "Authorization")
 
-        let updatedUser = UpdateUser(email: email, username: username)
+        let updatedUser = UpdateUser(email: email, displayname: displayname, departmentname: departmentname, division: division, location: location)
         
         do {
             request.httpBody = try JSONEncoder().encode(updatedUser)
@@ -253,6 +253,7 @@ struct SettingProfileView: View {
 
             if let response = response as? HTTPURLResponse, response.statusCode == 200 {
                 showAlert = true
+                fetchAPIData()
             } else {
                 print("Failed to upload image.")
             }

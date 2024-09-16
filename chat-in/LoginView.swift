@@ -104,7 +104,7 @@ struct LoginView: View {
                 } else {
                     DispatchQueue.main.async {
                         self.showError = true
-                        self.errorMessage = "Invalid response from server."
+                        self.errorMessage = "Incorrect username or password"
                     }
                 }
             } catch {
@@ -163,7 +163,7 @@ struct LoginView: View {
                 } else {
                     DispatchQueue.main.async {
                         self.showError = true
-                        self.errorMessage = "Invalid response from server."
+                        self.errorMessage = "Incorrect username or password"
                     }
                 }
             } catch {
