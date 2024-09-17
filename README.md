@@ -10,6 +10,12 @@ Open Source Chatting App with chat with ChatGPT functionality.
 [Chat-ing Backend](https://github.com/juikong/chatting-app)
 [Chat-ing Admin](https://github.com/juikong/chatting-web)
 
+## Roadmap
+
+- Push Notification
+- Attach File
+- Group Chat
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
