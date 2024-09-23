@@ -15,25 +15,35 @@ struct ContentView: View {
     @State private var userid: String = ""
     @State private var usertoken: String = ""
     @State private var timer: Timer?
+    @State private var selectedHeader: String? = nil
 
     var body: some View {
         NavigationSplitView {
-            List {
+            List(selection: $selectedHeader) {
                 ForEach(headerStore.headers, id: \._id) { header in
-                    NavigationLink {
-                        if (header.department != nil) {
-                            ContentDetailView(chatGroup: header.department!, chatHeader: header._id, chatType: "Group", lastChat: "Sender")
-                        } else {
-                            if (header.recipient == userid) {
-                                ContentDetailView(chatGroup: header.sender, chatHeader: header._id, chatType: "Single", lastChat: "Recipient")
-                            } else {
-                                ContentDetailView(chatGroup: header.recipient, chatHeader: header._id, chatType: "Single", lastChat: "Sender")
-                            }
-                        }
-                    } label: {
-                        if (header.department != nil) {
+                    //NavigationLink {
+                    //    if (header.department != nil) {
+                    //        ContentDetailView(chatGroup: header.department!, chatHeader: header._id, chatType: "Group", lastChat: "Sender")
+                    //    } else {
+                    //        if (header.recipient == userid) {
+                    //            ContentDetailView(chatGroup: header.sender, chatHeader: header._id, chatType: "Single", lastChat: "Recipient")
+                    //        } else {
+                    //            ContentDetailView(chatGroup: header.recipient, chatHeader: header._id, chatType: "Single", lastChat: "Sender")
+                    //        }
+                    //    }
+                    //} label: {
+                    //    if (header.department != nil) {
+                    //        ContentItemView(header: header, chatType: "Group")
+                    //    } else {
+                    //        ContentItemView(header: header, chatType: "Single")
+                    //    }
+                    //}
+                    if (header.department != nil) {
+                        NavigationLink(value: header) {
                             ContentItemView(header: header, chatType: "Group")
-                        } else {
+                        }
+                    } else {
+                        NavigationLink(value: header) {
                             ContentItemView(header: header, chatType: "Single")
                         }
                     }
@@ -74,7 +84,31 @@ struct ContentView: View {
             }
             .navigationTitle("Chat-ing")
         } detail: {
-            Text("Select an item")
+            if let selectedHeader = selectedHeader,
+               let selectedHeaderData = headerStore.headers.first(where: { $0._id == selectedHeader }) {
+                if (selectedHeaderData.department != nil) {
+                    ContentDetailView(chatGroup: selectedHeaderData.department!, chatHeader: selectedHeader, chatType: "Group", lastChat: "Sender")
+                } else {
+                    if (selectedHeaderData.recipient == userid) {
+                        ContentDetailView(chatGroup: selectedHeaderData.sender, chatHeader: selectedHeader, chatType: "Single", lastChat: "Recipient")
+                    } else {
+                        ContentDetailView(chatGroup: selectedHeaderData.recipient, chatHeader: selectedHeader, chatType: "Single", lastChat: "Sender")
+                    }
+                }
+            } else {
+                Text("Select an item")
+            }
+        }
+        .navigationDestination(for: Header.self) { header in
+            if (header.department != nil) {
+                ContentDetailView(chatGroup: header.department!, chatHeader: header._id, chatType: "Group", lastChat: "Sender")
+            } else {
+                if (header.recipient == userid) {
+                    ContentDetailView(chatGroup: header.sender, chatHeader: header._id, chatType: "Single", lastChat: "Recipient")
+                } else {
+                    ContentDetailView(chatGroup: header.recipient, chatHeader: header._id, chatType: "Single", lastChat: "Sender")
+                }
+            }
         }
     }
 

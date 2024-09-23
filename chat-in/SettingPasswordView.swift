@@ -71,7 +71,6 @@ struct SettingPasswordView: View {
     
     private func changePassword() {
         if password != confirmpassword {
-            //passwordAlert = true
             self.showError = true
             self.errorMessage = "Password and Confirm Password must match."
             return

@@ -9,13 +9,12 @@ import SwiftUI
 
 struct SettingView: View {
     @EnvironmentObject var authViewModel: AuthViewModel
+    @State private var selectedSetting: String? = nil
     
     var body: some View {
-        NavigationView {
-            List {
-                NavigationLink {
-                    SettingProfileView()
-                } label: {
+        NavigationSplitView {
+            List(selection: $selectedSetting) {
+                NavigationLink(value: "Profile") {
                     SettingItemView(title: "Profile")
                 }
             }
@@ -41,6 +40,17 @@ struct SettingView: View {
                 }
             }
 #endif
+        } detail: {
+            if let selectedSetting = selectedSetting, selectedSetting == "Profile" {
+                SettingProfileView()
+            } else {
+                Text("Select a setting")
+            }
+        }
+        .navigationDestination(for: String.self) { value in
+            if value == "Profile" {
+                SettingProfileView()
+            }
         }
     }
 }

@@ -24,7 +24,6 @@ struct SettingProfileView: View {
     @State private var selectedImageData: Data?
     
     var body: some View {
-        NavigationView {
             ScrollView {
                 VStack {
                     Button(action: {
@@ -134,16 +133,15 @@ struct SettingProfileView: View {
                 }
 #endif
             }
-        }
-        .alert(isPresented: $showAlert) {
-            Alert(
-                title: Text("Update Completed"),
-                message: Text("Your profile has been updated successfully."),
-                dismissButton: .default(Text("OK")) {
-                    //
-                }
-            )
-        }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Update Completed"),
+                    message: Text("Your profile has been updated successfully."),
+                    dismissButton: .default(Text("OK")) {
+                        //
+                    }
+                )
+            }
     }
     
     func getServerUrl() {
